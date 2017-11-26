@@ -67,9 +67,9 @@ export default function bindEventListeners() {
       } = ref
 
       // Hide all poppers except the one belonging to the element that was clicked IF
-      // `multiple` is false AND they are a touch user, OR
-      // `multiple` is false AND it's triggered by a click
-      if ((!multiple && Browser.touch) || (!multiple && trigger.indexOf('click') !== -1)) {
+      // `multiple` is false AND
+      // browser supports touch OR trigger contains click OR trigger contains manual
+      if (!multiple && (Browser.touch || trigger.indexOf('click') !== -1 || trigger.indexOf('manual') !== -1)) {
         return hideAllPoppers(ref)
       }
 
